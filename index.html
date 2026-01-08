@@ -200,8 +200,6 @@
     <ul>
   <template x-for="r in picks" :key="r.name">
     <li class="recipe-item"
-        @mouseenter="activeRecipe = r"
-        @mouseleave="activeRecipe = null"
         @click="activeRecipe = activeRecipe === r ? null : r">
 
       <span class="recipe-name">

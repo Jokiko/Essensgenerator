@@ -191,7 +191,7 @@ const RECIPES = [
         "Paprika",
         "Zwiebeln",
         "Knoblauch",
-        "Gyrogewürz /(Kreuzkümmel, Koriander, Paprikapulver, Thymian, Orgeano, Salz, Pfeffer, Curry)",
+        "Gyrosgewürz /(Kreuzkümmel, Koriander, Paprikapulver, Thymian, Orgeano, Salz, Pfeffer, Curry)",
         "Arschwasser",
         "Reis",
         "Tofu",
