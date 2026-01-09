@@ -73,6 +73,13 @@
       position: relative;
     }
 
+    .recipe-item span:last-child {
+      opacity: 0.7;
+    }
+    .recipe-item span:last-child:hover {
+      opacity: 1;
+    }
+
     .tooltip {
       position: absolute;
       top: 100%;
@@ -207,6 +214,13 @@
       </span>
       <br>
 
+       <!-- Lock -->
+      <span
+        @click.stop="toggleLock(r)"
+        style="cursor:pointer; font-size:1.2rem;"
+        x-text="r.locked ? '🔒' : '🔓'">
+      </span>
+
       <small>
         ⏱ <span x-text="r.time"></span> min ·
         <span x-text="r.difficulty"></span>
@@ -285,9 +299,27 @@
         generate() {
           const filtered = this.filterRecipes();
 
-          this.picks = filtered
+          // keep already locked picks
+          const locked = this.picks.filter(r => r.locked);
+
+          // free slots minus the already locked ones
+          const slots = 3 - locked.length;
+
+          // new picks from filtered recipe list with the locked picks filtered out additionally
+          const candidates = filtered.filter(r =>
+            !locked.some(l => l.name === r.name)
+          );
+
+          const newPicks = candidates
             .sort(() => 0.5 - Math.random())
-            .slice(0, 3);
+            .slice(0, slots)
+            .map(r => ({ ...r, locked: false }));
+
+          this.picks = [...locked, ...newPicks];
+        },
+
+        toggleLock(recipe) {
+          recipe.locked = !recipe.locked;
         }
       };
     }
