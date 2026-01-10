@@ -1,328 +1,394 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wochenend-Rezepte</title>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wochenend-Rezepte</title>
 
-  <!-- Alpine.js -->
-  <script src="https://unpkg.com/alpinejs" defer></script>
+    <!-- Alpine.js -->
+    <script src="https://unpkg.com/alpinejs" defer></script>
 
-  <!-- recipe data -->
-  <script src="recipes.js"></script>
+    <!-- recipe data -->
+    <script src="recipes.js"></script>
 
-  <style>
-    body {
-      font-family: system-ui, sans-serif;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 1rem;
-    }
-
-    .card {
-      max-width: 500px;
-      margin: auto;
-      background: white;
-      padding: 1.2rem;
-      border-radius: 12px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-
-    h2 {
-      margin-top: 0;
-    }
-
-    .filters label {
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    button {
-      width: 100%;
-      margin-top: 1rem;
-      padding: 0.8rem;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: none;
-      background: #4CAF50;
-      color: white;
-      cursor: pointer;
-    }
-
-    ul {
-      padding-left: 1rem;
-    }
-
-    li {
-      margin: 0.6rem 0;
-    }
-
-    .hint {
-      margin-top: 1rem;
-      color: #888;
-      font-size: 0.9rem;
-    }
-
-
-
-    .recipe-name {
-      cursor: pointer;
-    }
-
-   .recipe-item {
-      position: relative;
-    }
-
-    .recipe-item span:last-child {
-      opacity: 0.7;
-    }
-    .recipe-item span:last-child:hover {
-      opacity: 1;
-    }
-
-    .tooltip {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      margin-top: 0.5rem;
-      width: 220px;
-      background: #333;
-      color: white;
-      padding: 0.6rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      z-index: 10;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-    }
-
-    .tooltip ul {
-      margin: 0.4rem 0 0;
-      padding-left: 1rem;
-    }
-
-    .tooltip li {
-      margin: 0.2rem 0;
-    }
-
-    .tag {
-      display: inline-block;
-      padding: 0.3rem 0.6rem;
-      border-radius: 999px;
-      background: #eee;
-      cursor: pointer;
-    }
-    .tag.active {
-      background: #4CAF50;
-      color: white;
-    }
-
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
+    <style>
       body {
-        background: #121212;
-        color: #eaeaea;
+        font-family: system-ui, sans-serif;
+        background: #f4f4f4;
+        margin: 0;
+        padding: 1rem;
       }
 
       .card {
-        background: #1e1e1e;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+        max-width: 500px;
+        margin: auto;
+        background: white;
+        padding: 1.2rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
       }
 
-      .hint {
-        color: #aaa;
+      h2 {
+        margin-top: 0;
+      }
+
+      .filters label {
+        display: block;
+        margin-bottom: 0.5rem;
       }
 
       button {
-        background: #66bb6a;
-        color: #000;
+        width: 100%;
+        margin-top: 1rem;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: none;
+        background: #4CAF50;
+        color: white;
+        cursor: pointer;
+      }
+
+      ul {
+        padding-left: 1rem;
+      }
+
+      li {
+        margin: 0.6rem 0;
+      }
+
+      input[type="range"]{
+        vertical-align: middle;
+      }
+
+      .hint {
+        margin-top: 1rem;
+        color: #888;
+        font-size: 0.9rem;
+      }
+
+      .actions {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 1rem;
+      }
+
+      .download-btn {
+        width: auto;
+        padding: 0.5rem 0.9rem;
+        font-size: 0.9rem;
+        border-radius: 8px;
+        border: none;
+        background: #2196f3;
+        color: white;
+        cursor: pointer;
+      }
+
+      .duration-filter {
+        margin-top: 12px;
+      }
+
+
+      .recipe-name {
+        cursor: pointer;
+      }
+
+     .recipe-item {
+        position: relative;
+      }
+
+      .recipe-item span:last-child {
+        opacity: 0.7;
+      }
+      .recipe-item span:last-child:hover {
+        opacity: 1;
       }
 
       .tooltip {
-        background: #2a2a2a;
-        color: #f1f1f1;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin-top: 0.5rem;
+        width: 220px;
+        background: #333;
+        color: white;
+        padding: 0.6rem;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        z-index: 10;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.25);
       }
 
-      input,
-      select {
-        background: #2a2a2a;
-        color: #f1f1f1;
-        border: 1px solid #444;
+      .tooltip ul {
+        margin: 0.4rem 0 0;
+        padding-left: 1rem;
       }
-    }
-  </style>
+
+      .tooltip li {
+        margin: 0.2rem 0;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 0.3rem 0.6rem;
+        border-radius: 999px;
+        background: #eee;
+        cursor: pointer;
+      }
+      .tag.active {
+        background: #4CAF50;
+        color: white;
+      }
+
+      /* Dark mode */
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #121212;
+          color: #eaeaea;
+        }
+
+        .card {
+          background: #1e1e1e;
+          box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+        }
+
+        input[type="range"],
+        input[type="checkbox"] {
+          accent-color: #364d88;
+        }
+
+        .hint {
+          color: #aaa;
+        }
+
+        button {
+          background: #547f50;
+          color: #d8d7d2;
+        }
+
+        .tooltip {
+          background: #2a2a2a;
+          color: #f1f1f1;
+        }
+
+        input,
+        select {
+          background: #2a2a2a;
+          color: #f1f1f1;
+          border: 1px solid #444;
+        }
 
 
-</head>
+        .download-btn {
+          background: #364d88;
+          color: #d8d7d2;
+        }
 
-<body>
-  <div class="card" x-data="recipeApp()">
-    <h2>Wochenend-Rezepte</h2>
+      }
+    </style>
 
-    <div class="filters">
-      <label>
-        <input type="checkbox" x-model="filters.vegetarian">
-        Vegetarisch
-      </label>
 
-      <label>
-        <input type="checkbox" x-model="filters.vegan">
-        Vegan
-      </label>
+  </head>
 
-      <label>
-        <input type="checkbox" x-model="filters.glutenfree">
-        Glutenfrei
-      </label>
+  <body>
+    <div class="card" x-data="recipeApp()">
+      <h2>Wochenend-Rezepte</h2>
 
-      <label>
-        Max. Kochzeit:
-        <input type="range" min="10" max="90" step="5"
-               x-model="filters.maxTime">
-        <strong x-text="filters.maxTime"></strong> min
-      </label>
-
-      <p><strong>Tags</strong></p>
-
-      <template x-for="tag in allTags()" :key="tag">
-        <label style="display:inline-block; margin-right:0.6rem;">
-          <input type="checkbox"
-                 :value="tag"
-                 x-model="filters.tags">
-          <span x-text="tag"></span>
+      <div class="filters">
+        <label>
+          <input type="checkbox" x-model="filters.vegetarian">
+          Vegetarisch
         </label>
-      </template>
 
-      <!--<label>
-        Schwierigkeit:
-        <select x-model="filters.difficulty">
-          <option value="egal">Egal</option>
-          <option value="leicht">Leicht</option>
-          <option value="mittel">Mittel</option>
-        </select>
-      </label> -->
-    </div>
+        <label>
+          <input type="checkbox" x-model="filters.vegan">
+          Vegan
+        </label>
 
-    <button @click="generate()">3 Rezepte vorschlagen</button>
+        <label>
+          <input type="checkbox" x-model="filters.glutenfree">
+          Glutenfrei
+        </label>
 
-    <ul>
-  <template x-for="r in picks" :key="r.name">
-    <li class="recipe-item"
-        @click="activeRecipe = activeRecipe === r ? null : r">
+        <label class="duration-filter">
+          Max. Kochzeit:
+          <input type="range" min="10" max="90" step="5"
+                 x-model="filters.maxTime">
+          <strong x-text="filters.maxTime"></strong> min
+        </label>
 
-      <span class="recipe-name">
-        <strong x-text="r.name"></strong>
-      </span>
-      <br>
+        <p><strong>Tags</strong></p>
 
-       <!-- Lock -->
-      <span
-        @click.stop="toggleLock(r)"
-        style="cursor:pointer; font-size:1.2rem;"
-        x-text="r.locked ? '🔒' : '🔓'">
-      </span>
+        <template x-for="tag in allTags()" :key="tag">
+          <label style="display:inline-block; margin-right:0.6rem;">
+            <input type="checkbox"
+                   :value="tag"
+                   x-model="filters.tags">
+            <span x-text="tag"></span>
+          </label>
+        </template>
 
-      <small>
-        ⏱ <span x-text="r.time"></span> min ·
-        <span x-text="r.difficulty"></span>
-      </small>
-
-      <!-- Tooltip -->
-      <div class="tooltip"
-           x-show="activeRecipe === r"
-           x-transition
-           @click.outside="activeRecipe = null">
-
-        <strong>Zutaten</strong>
-        <ul>
-          <template x-for="i in r.ingredients" :key="i">
-            <li x-text="i"></li>
-          </template>
-        </ul>
+        <!--<label>
+          Schwierigkeit:
+          <select x-model="filters.difficulty">
+            <option value="egal">Egal</option>
+            <option value="easy">Leicht</option>
+            <option value="medium">Mittel</option>
+          </select>
+        </label> -->
       </div>
 
-    </li>
-  </template>
-</ul>
+      <button @click="generate()">3 Rezepte vorschlagen</button>
+
+      <ul>
+        <template x-for="r in picks" :key="r.name">
+          <li class="recipe-item"
+              @click="activeRecipe = activeRecipe === r ? null : r">
+
+            <span class="recipe-name">
+              <strong x-text="r.name"></strong>
+            </span>
+            <br>
+
+             <!-- Lock -->
+            <span
+              @click.stop="toggleLock(r)"
+              style="cursor:pointer; font-size:1.2rem;"
+              x-text="r.locked ? '🔒' : '🔓'">
+            </span>
+
+            <small>
+              ⏱ <span x-text="r.time"></span> min ·
+              <span x-text="r.difficulty"></span>
+            </small>
+
+            <!-- Tooltip -->
+            <div class="tooltip"
+                 x-show="activeRecipe === r"
+                 x-transition
+                 @click.outside="activeRecipe = null">
+
+              <strong>Zutaten</strong>
+              <ul>
+                <template x-for="i in r.ingredients" :key="i">
+                  <li x-text="i"></li>
+                </template>
+              </ul>
+            </div>
+
+          </li>
+        </template>
+      </ul>
 
 
-    <p class="hint" x-show="picks.length === 0">
-      Noch keine Rezepte ausgewählt.
-    </p>
-  </div>
+      <p class="hint" x-show="picks.length === 0">
+        Noch keine Rezepte ausgewählt.
+      </p>
 
-  <script>
-    function recipeApp() {
-      return {
-        recipes: RECIPES,
-        picks: [],
-        activeRecipe: null,
-        filters: {
-          vegetarian: false,
-          vegan: false,
-          glutenfree: false,
-          maxTime: 60,
-          difficulty: "egal",
-          tags: []
-        },
+      <div class="actions" x-show="picks.length > 0">
+        <button class="download-btn" @click="downloadIngredients()">
+          Cool, gib mir die Zutaten!
+        </button>
+      </div>
+    </div>
 
-        filterRecipes() {
-          return this.recipes.filter(r => {
-            if (this.filters.vegetarian && !r.vegetarian) return false;
-            if (this.filters.vegan && !r.vegan) return false;
-            if (this.filters.glutenfree && !r.glutenfree) return false;
-            if (r.time > this.filters.maxTime) return false;
-            // difficulty filter disabled
-            /*
-            if (
-              this.filters.difficulty !== "egal" &&
-              r.difficulty !== this.filters.difficulty
-            ) return false;
-            */
+    <script>
+      function recipeApp() {
+        return {
+          recipes: RECIPES,
+          picks: [],
+          activeRecipe: null,
+          filters: {
+            vegetarian: false,
+            vegan: false,
+            glutenfree: false,
+            maxTime: 60,
+            difficulty: "egal",
+            tags: []
+          },
 
-            // tag filters (AND)
-            if (this.filters.tags.length > 0) {
-              if (!this.filters.tags.every(tag => r.tags?.includes(tag))) {
-                return false;
+          filterRecipes() {
+            return this.recipes.filter(r => {
+              if (this.filters.vegetarian && !r.vegetarian) return false;
+              if (this.filters.vegan && !r.vegan) return false;
+              if (this.filters.glutenfree && !r.glutenfree) return false;
+              if (r.time > this.filters.maxTime) return false;
+              // difficulty filter disabled
+              /*
+              if (
+                this.filters.difficulty !== "egal" &&
+                r.difficulty !== this.filters.difficulty
+              ) return false;
+              */
+
+              // tag filters (AND)
+              if (this.filters.tags.length > 0) {
+                if (!this.filters.tags.every(tag => r.tags?.includes(tag))) {
+                  return false;
+                }
               }
-            }
 
-            return true;
-          });
-        },
+              return true;
+            });
+          },
 
 
-        //return set of all used tags
-        allTags() {
-          return [...new Set(this.recipes.flatMap(r => r.tags || []))];
-        },
+          //return set of all used tags
+          allTags() {
+            return [...new Set(this.recipes.flatMap(r => r.tags || []))];
+          },
 
-        generate() {
-          const filtered = this.filterRecipes();
+          generate() {
+            const filtered = this.filterRecipes();
 
-          // keep already locked picks
-          const locked = this.picks.filter(r => r.locked);
+            // keep already locked picks
+            const locked = this.picks.filter(r => r.locked);
 
-          // free slots minus the already locked ones
-          const slots = 3 - locked.length;
+            // free slots minus the already locked ones
+            const slots = 3 - locked.length;
 
-          // new picks from filtered recipe list with the locked picks filtered out additionally
-          const candidates = filtered.filter(r =>
-            !locked.some(l => l.name === r.name)
-          );
+            // new picks from filtered recipe list with the locked picks filtered out additionally
+            const candidates = filtered.filter(r =>
+              !locked.some(l => l.name === r.name)
+            );
 
-          const newPicks = candidates
-            .sort(() => 0.5 - Math.random())
-            .slice(0, slots)
-            .map(r => ({ ...r, locked: false }));
+            const newPicks = candidates
+              .sort(() => 0.5 - Math.random())
+              .slice(0, slots)
+              .map(r => ({ ...r, locked: false }));
 
-          this.picks = [...locked, ...newPicks];
-        },
+            this.picks = [...locked, ...newPicks];
+          },
 
-        toggleLock(recipe) {
-          recipe.locked = !recipe.locked;
-        }
-      };
-    }
-  </script>
-</body>
+          toggleLock(recipe) {
+            recipe.locked = !recipe.locked;
+          },
+
+          //create .txt file with the ingredients for each picked meal
+          downloadIngredients() {
+            let text = "Zutatenliste\n\n";
+
+            this.picks.forEach(r => {
+              text += r.name + "\n";
+              text += "-".repeat(r.name.length) + "\n";
+              r.ingredients.forEach(i => {
+                text += "• " + i + "\n";
+              });
+              text += "\n\n";
+            });
+
+            const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "zutatenliste.txt";
+            a.click();
+
+            URL.revokeObjectURL(url);
+          }
+        };
+      }
+    </script>
+  </body>
 </html>
