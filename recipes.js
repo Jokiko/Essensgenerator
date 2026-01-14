@@ -352,6 +352,34 @@ const RECIPES = [
         "Ohne Ofen"
     ]
   },
+  {
+    name: "Chili con Carne",
+    vegetarian: false,
+    vegan: false,
+    glutenfree: true,
+    time: 40,
+    difficulty: "leicht",
+    ingredients: [
+        "2 Zwiebeln",
+        "1 Knoblauchzehe",
+        "3 Schalotten",
+        "500g gemischtes Hackfleisch",
+        "2 Lorberrblätter",
+        "Tomatenmark",
+        "1 Tasse schwarzer Kaffee",
+        "200ml Rotwein",
+        "2 Dosen passierte Tomaten",
+        "1 Chilischote",
+        "1 Dose Mais",
+        "1 Dose Kidneybohnen",
+        "4 Tomaten",
+        "1 Prise Zucker",
+        "1 Zitrone (Abrieb)",
+        "2 Stangen Lauchzwiebeln"
+    ],
+    tags: [
+    ]
+  }
 ];
 
 
