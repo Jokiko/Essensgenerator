@@ -106,6 +106,7 @@ const RECIPES = [
         "Mehl"
     ],
     tags: [
+        "Ohne Ofen"
     ]
   },
   {
@@ -221,7 +222,6 @@ const RECIPES = [
         "Kichererbsen",
         "Brühe",
         "Mehl",
-        "Ei",
         "Quark"
     ],
     tags: [
@@ -263,11 +263,10 @@ const RECIPES = [
         "Dick Majo"
     ],
     tags: [
-        "Ohne Ofen"
     ]
   },
   {
-    name: "Nudeln in Thunfischsauße",
+    name: "Nudeln in Thunfischsoße",
     vegetarian: false,
     vegan: false,
     glutenfree: false,
@@ -302,6 +301,55 @@ const RECIPES = [
     ],
     tags: [
         "Fisch"
+    ]
+  },
+  {
+    name: "Harissa Lachs mit Tahini Soße und Couscous",
+    vegetarian: false,
+    vegan: false,
+    glutenfree: false,
+    time: 90,
+    difficulty: "mittel",
+    ingredients: [
+        "2 rote Zwiebeln",
+        "1 Limette",
+        "2 Karotten",
+        "2 Paprikas",
+        "1 Knolle Fenchel",
+        "2 EL Harissa-Paste",
+        "1 EL Honig",
+        "4 Knoblauchzehen",
+        "2 TL Ras el Hanout",
+        "120g Couscous",
+        "1 großer Brokkoli",
+        "400g Lachsfilet",
+        "3 EL Tahini",
+        "1 Zitrone"
+    ],
+    tags: [
+        "Fisch"
+    ]
+  },
+  {
+    name: "Falafel-Wraps",
+    vegetarian: true,
+    vegan: false,
+    glutenfree: false,
+    time: 15,
+    difficulty: "leicht",
+    ingredients: [
+        "Wraps",
+        "Tomaten",
+        "Eisbergsalat",
+        "Gurken",
+        "Zwiebeln",
+        "Mais",
+        "Feta / Hirtenkäse",
+        "Joghurt Soße / Tsatsiki",
+        "Falafel"
+    ],
+    tags: [
+        "Ohne Ofen"
     ]
   },
 ];
