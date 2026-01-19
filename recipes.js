@@ -378,8 +378,28 @@ const RECIPES = [
         "2 Stangen Lauchzwiebeln"
     ],
     tags: [
+        "Ohne Ofen"
     ]
-  }
+  },
+  {
+    name: "Pasta aglio e olio",
+    vegetarian: true,
+    vegan: true,
+    glutenfree: false,
+    time: 30,
+    difficulty: "leicht",
+    ingredients: [
+        "Nudeln",
+        "Getrocknete Tomaten",
+        "Knoblauch",
+        "Kirschtomaten",
+        "Olivenöl",
+        "Cayennepfeffer"
+    ],
+    tags: [
+        "Ohne Ofen"
+    ]
+  },
 ];
 
 
