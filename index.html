@@ -96,6 +96,24 @@
         margin-top: 12px;
       }
 
+      .appliance-filter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem 1rem;
+        margin-top: 0.5rem;
+      }
+
+      .appliance-label {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        white-space: nowrap;
+      }
+
+      details > summary {
+        cursor: pointer;
+        margin-bottom: 0.3rem;
+      }
 
       .recipe-name {
         cursor: pointer;
@@ -136,17 +154,6 @@
         margin: 0.2rem 0;
       }
 
-      .tag {
-        display: inline-block;
-        padding: 0.3rem 0.6rem;
-        border-radius: 999px;
-        background: #eee;
-        cursor: pointer;
-      }
-      .tag.active {
-        background: #4CAF50;
-        color: white;
-      }
 
       /* Dark mode */
       @media (prefers-color-scheme: dark) {
@@ -232,6 +239,24 @@
                  x-model="filters.maxTime">
           <strong x-text="filters.maxTime"></strong> min
         </label>
+
+        <details class="appliances-filter">
+          <summary>
+            <strong>
+              Küchengeräte (<span x-text="applianceSummary()"></span>)
+            </strong>
+          </summary>
+          <div class="appliance-filter">
+            <template x-for="d in appliances" :key="d">
+              <label class="appliance-label" style="display:block;">
+                <input type="checkbox"
+                       :value="d"
+                       x-model="filters.appliances">
+                <span x-text="d"></span>
+              </label>
+            </template>
+          </div>
+        </details>
 
         <p><strong>Tags</strong></p>
 
@@ -320,7 +345,8 @@
             glutenfree: false,
             maxTime: 60,
             difficulty: "egal",
-            tags: []
+            tags: [],
+            appliances: ["Ofen", "Herd", "Mixer"]
           },
 
           filterRecipes() {
@@ -337,6 +363,19 @@
               ) return false;
               */
 
+              // appliance filter
+              if (this.filters.appliances.length > 0) {
+                console.log(this.filters.appliances)
+                // assume a recipe without this field needs all appliances
+                if (r.appliances) {
+                  // filter out all recipes with any of the unchecked appliances
+                  const allowed = r.appliances.every(d =>
+                    this.filters.appliances.includes(d)
+                  );
+                  if (!allowed) return false;
+                }
+              }
+
               // tag filters (AND)
               if (this.filters.tags.length > 0) {
                 if (!this.filters.tags.every(tag => r.tags?.includes(tag))) {
@@ -346,6 +385,33 @@
 
               return true;
             });
+          },
+
+          appliances: [
+            "Ofen",
+            "Herd",
+            "Mixer",
+          ],
+
+          // return string of all deselected appliances
+          applianceSummary() {
+            const missing = this.appliances.filter(
+              d => !this.filters.appliances.includes(d)
+            );
+
+            if (missing.length === 0) {
+              return "alle";
+            }
+
+            //return joined string, the last two are joined with "oder", the rest with ","
+            const joinWithOder = (arr) =>
+              arr.length < 2
+                ? arr[0]
+                : arr.length === 2
+                  ? arr.join(" oder ")
+                  : arr.slice(0, -1).join(", ") + " oder " + arr.at(-1);
+
+            return "ohne " + joinWithOder(missing)
           },
 
 

@@ -18,6 +18,9 @@ const RECIPES = [
      "Tomatensauße / passierte Tomaten und Kräuter",
      "beliebige Belage"
     ],
+    appliances:[
+        "Ofen"
+    ],
     tags: [
     ]
   },
@@ -38,8 +41,10 @@ const RECIPES = [
       "Zwiebel",
       "Paprika"
     ],
+    appliances:[
+        "Herd"
+    ],
     tags: [
-        "Ohne Ofen"
     ]
   },
   {
@@ -59,8 +64,10 @@ const RECIPES = [
         "Curry-Paste",
         "Reis"
     ],
+    appliances:[
+        "Herd"
+    ],
     tags: [
-        "Ohne Ofen"
     ]
   },
   {
@@ -78,8 +85,10 @@ const RECIPES = [
         "Zitronensaft",
         "Frischkäse"
     ],
+    appliances:[
+        "Herd"
+    ],
     tags: [
-        "Ohne Ofen"
     ]
   },
   {
@@ -105,9 +114,9 @@ const RECIPES = [
         "Gurken",
         "Mehl"
     ],
-    tags: [
-        "Ohne Ofen"
-    ]
+    appliances:[
+        "Mixer"
+    ],
   },
   {
     name: "Kartoffel-Spinat-Auflauf",
@@ -126,6 +135,9 @@ const RECIPES = [
         "Milch",
         "Margarine",
         "Feta"
+    ],
+    appliances:[
+        "Ofen"
     ],
     tags: [
     ]
@@ -148,6 +160,9 @@ const RECIPES = [
        "Zwiebeln",
        "Käse",
        "Tomatenmark"
+    ],
+    appliances:[
+        "Ofen"
     ],
     tags: [
     ]
@@ -177,6 +192,9 @@ const RECIPES = [
        "Butter",
        "Käse",
     ],
+    appliances:[
+        "Ofen"
+    ],
     tags: [
     ]
   },
@@ -199,8 +217,10 @@ const RECIPES = [
         "Tomaten",
         "Petersilie"
     ],
+    appliances:[
+        "Herd"
+    ],
     tags: [
-        "Ohne Ofen"
     ]
   },
   {
@@ -224,8 +244,10 @@ const RECIPES = [
         "Mehl",
         "Quark"
     ],
+    appliances:[
+        "Herd"
+    ],
     tags: [
-        "Ohne Ofen"
     ]
   },
   {
@@ -242,8 +264,11 @@ const RECIPES = [
         "Ei",
         "Mehl"
     ],
+    appliances:[
+        "Herd",
+        "Mixer"
+    ],
     tags: [
-        "Ohne Ofen"
     ]
   },
   {
@@ -261,6 +286,10 @@ const RECIPES = [
         "Bratwürste",
         "Pommes",
         "Dick Majo"
+    ],
+    appliances:[
+        "Herd",
+        "Ofen"
     ],
     tags: [
     ]
@@ -281,8 +310,11 @@ const RECIPES = [
         "100ml Nudelwasser",
         "200g Kirschtomaten"
     ],
+    appliances:[
+        "Herd"
+    ],
     tags: [
-        "Fisch", "Ohne Ofen"
+        "Fisch"
     ]
   },
   {
@@ -298,6 +330,9 @@ const RECIPES = [
         "Salz",
         "2 Eier (M)",
         "120ml Helles Bier"
+    ],
+    appliances:[
+        "Herd"
     ],
     tags: [
         "Fisch"
@@ -326,6 +361,9 @@ const RECIPES = [
         "3 EL Tahini",
         "1 Zitrone"
     ],
+    appliances:[
+        "Ofen"
+    ],
     tags: [
         "Fisch"
     ]
@@ -348,8 +386,9 @@ const RECIPES = [
         "Joghurt Soße / Tsatsiki",
         "Falafel"
     ],
+    appliances:[
+    ],
     tags: [
-        "Ohne Ofen"
     ]
   },
   {
@@ -377,8 +416,10 @@ const RECIPES = [
         "1 Zitrone (Abrieb)",
         "2 Stangen Lauchzwiebeln"
     ],
+    appliances:[
+        "Herd"
+    ],
     tags: [
-        "Ohne Ofen"
     ]
   },
   {
@@ -396,8 +437,10 @@ const RECIPES = [
         "Olivenöl",
         "Cayennepfeffer"
     ],
+    appliances:[
+        "Herd"
+    ],
     tags: [
-        "Ohne Ofen"
     ]
   },
   {
@@ -421,8 +464,10 @@ const RECIPES = [
         "Reis",
         "Koriander (auf Wunsch eines geschmackvollen Menschens zu entfernen)"
     ],
+    appliances:[
+        "Herd"
+    ],
     tags: [
-        "Ohne Ofen"
     ]
   },
   {
@@ -441,8 +486,10 @@ const RECIPES = [
         "Sojasoße",
         "Reis"
     ],
+    appliances:[
+        "Herd"
+    ],
     tags: [
-        "Ohne Ofen"
     ]
   },
 ];
@@ -458,6 +505,8 @@ const RECIPES = [
     time: 30,
     difficulty: "leicht",
     ingredients: [
+    ],
+    appliances:[
     ],
     tags: [
     ]
