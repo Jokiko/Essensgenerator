@@ -400,6 +400,51 @@ const RECIPES = [
         "Ohne Ofen"
     ]
   },
+  {
+    name: "Ho Chi Minh",
+    vegetarian: true,
+    vegan: false,
+    glutenfree: true,
+    time: 30,
+    difficulty: "leicht",
+    ingredients: [
+        "2 1/2 Packungen Räuchertofu",
+        "2 Speisestärke",
+        "2 Paprika",
+        "150g Cashewkerne",
+        "Zwiebel",
+        "Knoblauch",
+        "Sojasoße",
+        "Hoisinsoße",
+        "Honig",
+        "Zitronensaft",
+        "Reis",
+        "Koriander (auf Wunsch eines geschmackvollen Menschens zu entfernen)"
+    ],
+    tags: [
+        "Ohne Ofen"
+    ]
+  },
+  {
+    name: "Pak Choi Pfanne",
+    vegetarian: true,
+    vegan: true,
+    glutenfree: true,
+    time: 30,
+    difficulty: "leicht",
+    ingredients: [
+        "900g Pak Choi",
+        "400g Champignons",
+        "zwei handvoll Tomaten",
+        "1 Zwiebel",
+        "Teriyaki-Soße",
+        "Sojasoße",
+        "Reis"
+    ],
+    tags: [
+        "Ohne Ofen"
+    ]
+  },
 ];
 
 
