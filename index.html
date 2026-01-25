@@ -364,16 +364,13 @@
               */
 
               // appliance filter
-              if (this.filters.appliances.length > 0) {
-                console.log(this.filters.appliances)
-                // assume a recipe without this field needs all appliances
-                if (r.appliances) {
-                  // filter out all recipes with any of the unchecked appliances
-                  const allowed = r.appliances.every(d =>
-                    this.filters.appliances.includes(d)
-                  );
-                  if (!allowed) return false;
-                }
+              // assume a recipe without this field doesn't need any appliances
+              if (r.appliances) {
+                // filter out all recipes with any of the unchecked appliances
+                const allowed = r.appliances.every(d =>
+                  this.filters.appliances.includes(d)
+                );
+                if (!allowed) return false;
               }
 
               // tag filters (AND)
